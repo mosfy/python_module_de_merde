@@ -62,16 +62,17 @@ class SecurePlant:
         Get the current age of the plant.
 
         Returns:
-            int: Plant height
+            int: Plant age in days
         """
-        return self._age
-    
+        return self._day
+
     def get_info(self):
         """
         Return current plant information.
         """
         return f"{self.name} ({self._height}cm, {self._day} days)"
-    
+
+
 if __name__ == "__main__":
     print("=== Garden Security System ===")
 

@@ -1,17 +1,17 @@
 class Plant:
     """
     a Plant blueprint that can represent any plant with its attributes.
-    
+
     Attributes:
         name (str): The name of the plant
         height (float): Height of the plant in centimeters
         day (int): Age of the plant in day
     """
-    
+
     def __init__(self, name, height, day):
         """
         Initialize a Plant with its attributes.
-        
+
         Args:
             name (str): The name of the plant
             height (float): Height in centimeters
@@ -26,7 +26,8 @@ class Plant:
         write all the information about the plant
         """
         return f"Created: {self.name} ({self.height}cm, {self.day} days)"
-        
+
+
 if __name__ == "__main__":
     plant_data = [
         ("Rose", 25, 30),
