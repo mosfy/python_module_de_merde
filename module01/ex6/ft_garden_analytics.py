@@ -7,7 +7,7 @@ class Plant:
         height (float): Height of the plant in centimeters.
     """
 
-    def __init__(self, name, height):
+    def __init__(self, name: str, height: float) -> None:
         """
         Initialize a Plant instance.
 
@@ -18,14 +18,14 @@ class Plant:
         self.name = name
         self.height = height
 
-    def grow(self):
+    def grow(self) -> None:
         """
         Increase the height of the plant by 1 cm.
         """
         print(f"{self.name} grew 1cm")
         self.height += 1
 
-    def get_info(self):
+    def get_info(self) -> str:
         """
         Return a formatted string containing plant information.
 
@@ -46,7 +46,7 @@ class FloweringPlant(Plant):
         color (str): Color of the flower.
     """
 
-    def __init__(self, name, height, color):
+    def __init__(self, name: str, height: float, color: str) -> None:
         """
         Initialize a FloweringPlant instance.
 
@@ -58,14 +58,14 @@ class FloweringPlant(Plant):
         super().__init__(name, height)
         self.color = color
 
-    def get_info(self):
+    def get_info(self) -> str:
         """
         Return a formatted string containing flowering plant information.
 
         Returns:
             str: Flowering plant description.
         """
-        return (f"- {self.name}: {self.height}cm, {self.color}"
+        return (f"- {self.name}: {self.height}cm, {self.color} "
                 "flowers (blooming)")
 
 
@@ -80,7 +80,8 @@ class PrizeFlower(FloweringPlant):
         prize_points (int): Points awarded for the prize flower.
     """
 
-    def __init__(self, name, height, color, prize_points):
+    def __init__(self, name: str, height: float, color: str,
+                 prize_points: int) -> None:
         """
         Initialize a PrizeFlower instance.
 
@@ -93,7 +94,7 @@ class PrizeFlower(FloweringPlant):
         super().__init__(name, height, color)
         self.prize_points = prize_points
 
-    def get_info(self):
+    def get_info(self) -> str:
         """
         Return a formatted string containing prize flower information.
 
@@ -114,7 +115,7 @@ class Garden:
         nb_grew (int): Total growth applied to plants in the garden.
     """
 
-    def __init__(self, owner):
+    def __init__(self, owner: str) -> None:
         """
         Initialize a Garden instance.
 
@@ -126,7 +127,7 @@ class Garden:
         self.plants = []
         self.nb_grew = 0
 
-    def add_plant(self, plant: Plant):
+    def add_plant(self, plant: Plant) -> None:
         """
         Add a plant to the garden.
 
@@ -137,7 +138,7 @@ class Garden:
         self.plants.append(plant)
         print(f"Added {plant.name} to {self.owner}'s garden")
 
-    def helping_plants(self):
+    def helping_plants(self) -> None:
         """
         Help all plants in the garden grow by increasing their height.
         """
@@ -161,7 +162,7 @@ class GardenManager:
         """
         self.all_gardens = []
 
-    def add_garden(self, garden: Garden):
+    def add_garden(self, garden: Garden) -> None:
         """
         Add a garden to the manager.
 
@@ -170,7 +171,7 @@ class GardenManager:
         """
         self.all_gardens.append(garden)
 
-    def size(self):
+    def size(self) -> int:
         """
         Return the total number of gardens managed.
 
@@ -179,7 +180,7 @@ class GardenManager:
         """
         return len(self.all_gardens)
 
-    def total_score(self):
+    def total_score(self) -> str:
         """
         Compute the total score of all gardens.
 
@@ -194,7 +195,7 @@ class GardenManager:
         return (s_ret)
 
     @classmethod
-    def create_garden_network(cls):
+    def create_garden_network(cls) -> object:
         """
         Create a default garden network with two gardens: Alice and Bob.
 
@@ -213,7 +214,7 @@ class GardenManager:
         Provides static methods to calculate statistics for a garden.
         """
         @staticmethod
-        def count_plants(garden: Garden):
+        def count_plants(garden: Garden) -> int:
             """
             Count the number of plants in a garden.
 
@@ -226,7 +227,7 @@ class GardenManager:
             return len(garden.plants)
 
         @staticmethod
-        def total_height(garden: Garden):
+        def total_height(garden: Garden) -> int:
             """
             Calculate total height of all plants in a garden.
 
@@ -242,7 +243,7 @@ class GardenManager:
             return (size)
 
         @staticmethod
-        def total_prize(garden: Garden):
+        def total_prize(garden: Garden) -> int:
             """
             Calculate total prize points for PrizeFlowers in the garden.
 
@@ -259,7 +260,7 @@ class GardenManager:
             return (prize)
 
         @staticmethod
-        def plant_type(garden: Garden):
+        def plant_type(garden: Garden) -> str:
             """
             Count the number of each plant type in the garden.
 
@@ -270,20 +271,20 @@ class GardenManager:
                 str: Formatted string with counts of each plant type.
             """
             nb_plant = 0
-            nb_floweringPlant = 0
-            nb_prizeFlower = 0
+            nb_flowering_plant = 0
+            nb_prize_flower = 0
             for plant in garden.plants:
                 if (isinstance(plant, PrizeFlower)):
-                    nb_prizeFlower += 1
+                    nb_prize_flower += 1
                 elif (isinstance(plant, FloweringPlant)):
-                    nb_floweringPlant += 1
+                    nb_flowering_plant += 1
                 else:
                     nb_plant += 1
-            return (f"Plant types: {nb_plant} regular, {nb_floweringPlant} "
-                    f"flowering, {nb_prizeFlower} prize flowers")
+            return (f"Plant types: {nb_plant} regular, {nb_flowering_plant} "
+                    f"flowering, {nb_prize_flower} prize flowers")
 
         @staticmethod
-        def get_score(garden: Garden):
+        def get_score(garden: Garden) -> int:
             """
             Calculate a score for the garden based on plant types and height.
 
@@ -306,7 +307,7 @@ class GardenManager:
             return (score_plant + score_floweringPlant + score_prizeFlower)
 
         @staticmethod
-        def Height_validation(garden: Garden):
+        def height_validation(garden: Garden) -> bool:
             """
             Check if total height of plants meets a threshold (100 cm).
 
@@ -319,7 +320,7 @@ class GardenManager:
             return GardenManager.GardenStats.total_height(garden) >= 100
 
         @staticmethod
-        def get_info(garden: Garden, garden_manager):
+        def get_info(garden: Garden, garden_manager: object) -> None:
             """
             Print a detailed report for a garden.
 
@@ -338,7 +339,7 @@ class GardenManager:
             print(f"{GardenManager.GardenStats.plant_type(garden)}")
             print()
             print(f"Height validation test: "
-                  f"{GardenManager.GardenStats.Height_validation(garden)}")
+                  f"{GardenManager.GardenStats.height_validation(garden)}")
             print(garden_manager.total_score())
             print(f"Total gardens managed: {garden_manager.size()}")
 
@@ -366,13 +367,11 @@ if __name__ == "__main__":
     GardenManager.GardenStats.get_info(alice_garden, manager)
     print()
 
-    little_orange_tree = Plant("Little Orange Tree", 5)
-    little_tree = Plant("Little Tree", 4)
+    Orange_Tree = Plant("litlle Orange Tree", 10)
     lilac = FloweringPlant("Lilac", 30, "purple")
     Moonflower = PrizeFlower("Moonflower", 14, "yellow", 5)
 
-    bob_garden.add_plant(little_orange_tree)
-    bob_garden.add_plant(little_tree)
+    bob_garden.add_plant(Orange_Tree)
     bob_garden.add_plant(lilac)
     bob_garden.add_plant(Moonflower)
 
