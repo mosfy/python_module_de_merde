@@ -12,16 +12,21 @@ for arg in sys.argv[1:]:
         scores.append(int(arg))
     except ValueError:
         print("Invalid score:", arg)
+        sys.exit(0)
         
 if len(scores) == 0:
     print("No valid scores to analyze.")
     sys.exit(0)
-    
+ 
+total = sum(scores)
+maximum = max(scores)
+minimum = min(scores)
+average = total / len(scores)
+
 print(f"Scores processed: {scores}")
 print(f"Total players: {len(scores)}")
-print(f"Total score: {sum(scores)}")
-print(f"Average score: {sum(scores)/len(scores)}")
-print(f"High score: {max(scores)}")
-print(f"Low score: {min(scores)}")
-print(f"Score range: {max(scores) - min(scores)}")
-    
+print(f"Total score: {total}")
+print(f"Average score: {average:.2f}")
+print(f"High score: {maximum}")
+print(f"Low score: {minimum}")
+print(f"Score range: {maximum - minimum}")
