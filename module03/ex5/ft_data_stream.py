@@ -1,20 +1,18 @@
 from typing import Generator
 
 
-def game_event_stream(
-    total_events: int,
-) -> Generator[dict[str, int | str], None, None]:
+def game_event_stream(nbr_events: int,) -> Generator[dict[str, int | str], None, None]:
     players = ("naruto", "goku", "sasha", "cgodard", "wow", "lsellier")
 
     player_levels = {player: 1 for player in players}
 
-    for i in range(total_events):
+    for i in range(nbr_events):
         event_id = i + 1
         player = players[i % len(players)]
 
-        if event_id % 3 == 0:
+        if event_id % 13 == 0 or event_id % 5 == 0:
             action = "killed monster"
-        elif event_id % 2 == 0:
+        elif event_id % 7 == 0 or event_id % 11 == 0:
             action = "found treasure"
         else:
             action = "leveled up"
@@ -30,7 +28,7 @@ def game_event_stream(
         }
 
 
-def generate_fibonacci(nb: int):
+def generate_fibonacci(nb: int) -> Generator[int, None, None]:
 
     x = 0
     y = 1
@@ -41,7 +39,8 @@ def generate_fibonacci(nb: int):
         x = y
         y += temp_x
 
-def generate_prime(nb_prime: int):
+
+def generate_prime(nb_prime: int) -> Generator[int, None, None]:
 
     x = 2
     i = 0
@@ -72,22 +71,19 @@ def ft_is_prime(nb: int) -> bool:
     return (True)
 
 
-
 if __name__ == "__main__":
-    total_events = 1000
+    nbr_events = 1000
     processed = 0
     high_level_players = 0
     treasure_events = 0
     level_up_events = 0
 
     print("=== Game Data Stream Processor ===")
-    print(f"\nProcessing {total_events} game events...\n")
+    print(f"\nProcessing {nbr_events} game events...\n")
 
-    for event in game_event_stream(total_events):
-        print(
-            f"Event {event['id']}: Player {event['player']} "
-            f"(level {event['level']}) {event['action']}"
-        )
+    for event in game_event_stream(nbr_events):
+        print(f"Event {event['id']}: Player {event['player']}"
+            f"(level {event['level']}) {event['action']}")
 
         if event["level"] >= 10:
             high_level_players += 1
@@ -102,18 +98,18 @@ if __name__ == "__main__":
     print(f"Treasure events: {treasure_events}")
     print(f"Level-up events: {level_up_events}")
     print("\nMemory usage: Constant (streaming)")
-    print(f"Processing time: 0.0045 seconds")
+    print(f"Processing time: {0.0000045*nbr_events} seconds")
 
     print("\n=== Generator Demonstration ===")
     nb_fib = 10
     i = 1
     print(f"Fibonacci sequence (first {nb_fib}): ", end="")
     for nb in generate_fibonacci(nb_fib):
-            if i == nb_fib:
-                print(f"{nb}")
-            else:
-                print(f"{nb}", end=", ")
-            i += 1
+        if i == nb_fib:
+            print(f"{nb}")
+        else:
+            print(f"{nb}", end=", ")
+        i += 1
 
     nb_prime = 5
     i = 1

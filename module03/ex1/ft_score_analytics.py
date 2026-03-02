@@ -4,7 +4,8 @@ scores = []
 
 print("=== Player Score Analytics ===")
 if len(sys.argv) == 1:
-    print("No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ...")
+    print("No scores provided. Usage: python3"
+          "ft_score_analytics.py <score1> <score2> ...")
     sys.exit(0)
 
 for arg in sys.argv[1:]:
@@ -13,11 +14,11 @@ for arg in sys.argv[1:]:
     except ValueError:
         print("Invalid score:", arg)
         sys.exit(0)
-        
+
 if len(scores) == 0:
     print("No valid scores to analyze.")
     sys.exit(0)
- 
+
 total = sum(scores)
 maximum = max(scores)
 minimum = min(scores)
